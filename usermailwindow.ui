@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>usermailwindow</class>
+ <widget class="QDialog" name="usermailwindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>348</width>
+    <height>247</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Kullanıcılara Mail Gönder</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QLabel
+{
+background:transparent;
+color:#00bcb6;
+}
+QPushButton{color:white;border-radius:30px;}
+QPushButton{background-color:#00bcb6;border-radius:10px;}
+QDialog{background-color:rgb(15, 15, 15);}
+QTextEdit{background-color:rgb(93, 93, 93); color:#00bcb6;}
+QPlainTextEdit{background-color:rgb(93, 93, 93); color:#00bcb6;}
+QLineEdit{background-color:rgb(93, 93, 93); color:#00bcb6;}
+
+</string>
+  </property>
+  <widget class="QPlainTextEdit" name="mailmessage">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>110</y>
+     <width>331</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>20</y>
+     <width>41</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Başlık </string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_2">
+   <property name="geometry">
+    <rect>
+     <x>230</x>
+     <y>190</y>
+     <width>91</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Mail Gönder</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="mailtitle">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>50</y>
+     <width>331</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>80</y>
+     <width>41</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Mesaj</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

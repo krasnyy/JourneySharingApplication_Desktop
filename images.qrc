@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/imag">
+        <file>imag/journey_sharing_application.png</file>
+        <file>imag/2.png</file>
+        <file>imag/13.png</file>
+    </qresource>
+</RCC>
