@@ -18,14 +18,12 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     loginwindow.cpp \
-    mailsender.cpp \
     main.cpp \
     mainwindow.cpp \
     usermailwindow.cpp
 
 HEADERS += \
     loginwindow.h \
-    mailsender.h \
     mainwindow.h \
     usermailwindow.h
 

@@ -7,7 +7,7 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    Loginwindow ww;
+    usermailwindow ww;
     ww.show();
    /* mailSender mail;
 

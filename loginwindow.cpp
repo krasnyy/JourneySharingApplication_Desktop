@@ -37,7 +37,7 @@ void Loginwindow::on_pushButton_clicked()
     qInfo() << emailAddress << " : " << password;
     //data.append("{\"emailAddress\"").append(":").append("\""+emailAddress+"\"").append(",").append("\"password\"").append(":").append("\""+password+"\"}");
     qInfo() << "Posting to server...";
-    QNetworkRequest request = QNetworkRequest(QUrl("https://journey-sharing-application.herokuapp.com/token"));
+    QNetworkRequest request = QNetworkRequest(QUrl("https://journey-sharing-application.herokuapp.com/token/panel"));
     QByteArray data;
     request.setHeader(QNetworkRequest::ContentTypeHeader,"application/json");
     data.append("{\"emailAddress\"").append(":").append("\""+emailAddress+"\"").append(",").append("\"password\"").append(":").append("\""+password+"\"}");
