@@ -43,6 +43,7 @@ private:
     QString password;
 
 
+
 };
 
 #endif // LOGINWINDOW_H

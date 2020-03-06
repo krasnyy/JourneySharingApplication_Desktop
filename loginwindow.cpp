@@ -10,6 +10,7 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonArray>
+#include<QMessageBox>
 
 Loginwindow::Loginwindow(QWidget *parent) :
     QWidget(parent),
@@ -30,7 +31,7 @@ Loginwindow::~Loginwindow()
 
 void Loginwindow::on_pushButton_clicked()
 {
-
+    ui->label_4->setText("");
     emailAddress=ui->lineEdit->text();
     password=ui->lineEdit_2->text();
     qInfo() << emailAddress << " : " << password;
@@ -57,12 +58,17 @@ void Loginwindow::readyRead()
            buffer=reply->readAll();
        QJsonDocument jsonDoc(QJsonDocument::fromJson(buffer).object());
        QString token=jsonDoc["token"].toString();
+       if(token.isEmpty()!=0){
+           qInfo()<<"Hatali";
+           ui->label_4->setText("Email veya parola yanlış.Lütfen tekrar deneyin");
+       }
        qInfo() << token;
-       QJsonObject jsonReply = jsonDoc.object();
+
+      /* QJsonObject jsonReply = jsonDoc.object();
        QJsonObject response = jsonReply["token"].toObject();
        QJsonArray  data     = jsonReply["data"].toArray();
        qInfo() << response.value("token");
-       qDebug() << data;
+       qDebug() << data;*/
 
 
 }
