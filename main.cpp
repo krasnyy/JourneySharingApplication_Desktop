@@ -8,12 +8,11 @@
 
 
 
-
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    usermailwindow lw;
+    Loginwindow lw;
     lw.show();
    /* mailSender mail;
 

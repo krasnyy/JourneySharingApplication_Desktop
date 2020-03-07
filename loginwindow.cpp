@@ -78,7 +78,7 @@ void Loginwindow::readyRead()
        }
         qInfo() << token;
         t_oken=token;
-        QString filename("C:/Users/Monster/Desktop/token.txt");
+        const QString filename("C:/Users/Monster/Desktop/token.txt");
         tokenWrite(filename,token);
 
 

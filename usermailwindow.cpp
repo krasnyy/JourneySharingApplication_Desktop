@@ -44,8 +44,8 @@ void usermailwindow::on_pushButton_2_clicked()
     QNetworkRequest request = QNetworkRequest(QUrl("https://journey-sharing-application.herokuapp.com/email/admin/sendAll"));
     std::unique_ptr<Loginwindow>lg;
     QByteArray data;
-    QString readtoken=tokenRead("C:/Users/Monster/Desktop/token.txt");
-    QString tokenn="Bearer "+readtoken;
+    const QString readtoken=tokenRead("C:/Users/Monster/Desktop/token.txt");
+    const QString tokenn="Bearer "+readtoken;
     request.setHeader(QNetworkRequest::ContentTypeHeader,"application/json");
     request.setRawHeader("Authorization",tokenn.toUtf8());
     data.append("{\"message\"").append(":").append("\""+m_essage+"\"").append(",").append("\"title\"").append(":").append("\""+t_itle+"\"}");
