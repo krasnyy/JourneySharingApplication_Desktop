@@ -9,7 +9,7 @@
 #include <QNetworkRequest>
 #include <QAuthenticator>
 #include <QNetworkProxy>
-#include<string>
+
 
 namespace Ui {
 class Loginwindow;
@@ -22,6 +22,7 @@ class Loginwindow : public QWidget
 public:
     explicit Loginwindow(QWidget *parent = nullptr);
     ~Loginwindow();
+    QString t_oken;
 
 private slots:
     void on_pushButton_clicked();

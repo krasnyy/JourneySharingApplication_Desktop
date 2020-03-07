@@ -1,5 +1,6 @@
 #include "usermailwindow.h"
 #include "ui_usermailwindow.h"
+#include "loginwindow.h"
 
 
 usermailwindow::usermailwindow(QWidget *parent) :
@@ -15,6 +16,24 @@ usermailwindow::~usermailwindow()
     delete ui;
 }
 
+QString tokenRead(const QString &Filename)
+{
+    QFile mFile(Filename);
+    if(!mFile.open(QFile::ReadOnly | QFile::Text))
+    {
+
+        qInfo() << "could not open file for reading";
+        return "";
+    }
+    QTextStream in(&mFile);
+    QString t_oken=in.readAll();
+    qDebug() << t_oken;
+    mFile.flush();
+    mFile.close();
+    return t_oken;
+}
+
+
 void usermailwindow::on_pushButton_2_clicked()
 {
     t_itle=ui->mailtitle->text();
@@ -23,14 +42,21 @@ void usermailwindow::on_pushButton_2_clicked()
     //data.append("{\"message\"").append(":").append("\""+emailAddress+"\"").append(",").append("\"password\"").append(":").append("\""+password+"\"}");
     qInfo() << "Posting to server...";
     QNetworkRequest request = QNetworkRequest(QUrl("https://journey-sharing-application.herokuapp.com/email/admin/sendAll"));
+    std::unique_ptr<Loginwindow>lg;
     QByteArray data;
+    QString readtoken=tokenRead("C:/Users/Monster/Desktop/token.txt");
+    QString tokenn="Bearer "+readtoken;
     request.setHeader(QNetworkRequest::ContentTypeHeader,"application/json");
-    request.setRawHeader("Authorization", "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJrcmFzbnkwMDZAZ21haWwuY29tIiwic2NvcGVzIjpbeyJhdXRob3JpdHkiOiJVU0VSIn1dLCJpc3MiOiJodHRwOi8vdGVtZWx0LmNvbSIsImlhdCI6MTU4MzQ4OTAzMSwiZXhwIjoxNTgzNDkyNjMxfQ.ucyBytqQYoDswRhUUy4Dsj2YC-g-Fhkx1QK2tUfINhg");
+    request.setRawHeader("Authorization",tokenn.toUtf8());
     data.append("{\"message\"").append(":").append("\""+m_essage+"\"").append(",").append("\"title\"").append(":").append("\""+t_itle+"\"}");
     QNetworkReply* reply = manager.post(request,data);
     connect(reply,&QNetworkReply::readyRead,this,&usermailwindow::readyRead);
 
+
 }
+
+
+
 
 void usermailwindow::readyRead()
 {

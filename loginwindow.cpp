@@ -2,15 +2,14 @@
 #include "ui_loginwindow.h"
 #include <QNetworkAccessManager>
 #include<QNetworkReply>
-#include<QMessageBox>
 #include<QNetworkRequest>
-#include<QStringList>
 #include <QJsonValue>
 #include <QJsonValueRef>
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonArray>
-#include<QMessageBox>
+#include<QFile>
+
 
 Loginwindow::Loginwindow(QWidget *parent) :
     QWidget(parent),
@@ -20,6 +19,22 @@ Loginwindow::Loginwindow(QWidget *parent) :
 
 
 
+}
+
+
+void tokenWrite(const QString &Filename,const QString &token)
+{
+    QFile mFile(Filename);
+    if(!mFile.open(QFile::WriteOnly | QFile::Text))
+    {
+
+        qInfo() << "could not open file for writting";
+        return;
+    }
+    QTextStream out(&mFile);
+    out << token;
+    mFile.flush();
+    mFile.close();
 }
 
 
@@ -44,9 +59,8 @@ void Loginwindow::on_pushButton_clicked()
     QNetworkReply* reply = manager.post(request,data);
     connect(reply,&QNetworkReply::readyRead,this,&Loginwindow::readyRead);
 
-
-
 }
+
 
 
 void Loginwindow::readyRead()
@@ -62,7 +76,11 @@ void Loginwindow::readyRead()
            qInfo()<<"Hatali";
            ui->label_4->setText("Email veya parola yanlış.Lütfen tekrar deneyin");
        }
-       qInfo() << token;
+        qInfo() << token;
+        t_oken=token;
+        QString filename("C:/Users/Monster/Desktop/token.txt");
+        tokenWrite(filename,token);
+
 
       /* QJsonObject jsonReply = jsonDoc.object();
        QJsonObject response = jsonReply["token"].toObject();
