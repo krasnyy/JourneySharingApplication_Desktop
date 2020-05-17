@@ -9,6 +9,7 @@
 #include <QJsonObject>
 #include <QJsonArray>
 #include<QFile>
+#include<QSystemTrayIcon>
 
 
 Loginwindow::Loginwindow(QWidget *parent) :
@@ -16,7 +17,16 @@ Loginwindow::Loginwindow(QWidget *parent) :
     ui(new Ui::Loginwindow)
 {
     ui->setupUi(this);
-
+    this->setFixedSize(480,520);
+    mSystemTrayIcon =new QSystemTrayIcon(this);
+    mSystemTrayIcon->setIcon(QIcon(":/imag/imag/13.png"));
+    mSystemTrayIcon->setVisible(true);
+    connect(&manager,&QNetworkAccessManager::authenticationRequired,this,&Loginwindow::authenticationRequired);
+    connect(&manager,&QNetworkAccessManager::encrypted,this,&Loginwindow::encrypted);
+    connect(&manager,&QNetworkAccessManager::networkAccessibleChanged,this,&Loginwindow::networkAccessibleChanged);
+    connect(&manager,&QNetworkAccessManager::preSharedKeyAuthenticationRequired,this,&Loginwindow::preSharedKeyAuthenticationRequired);
+    connect(&manager,&QNetworkAccessManager::proxyAuthenticationRequired,this,&Loginwindow::proxyAuthenticationRequired);
+    connect(&manager,&QNetworkAccessManager::sslErrors,this,&Loginwindow::sslErrors);
 
 
 }
@@ -46,13 +56,14 @@ Loginwindow::~Loginwindow()
 
 void Loginwindow::on_pushButton_clicked()
 {
+    mSystemTrayIcon->showMessage(tr("Deneme"),tr("deneme"));
     ui->label_4->setText("");
     emailAddress=ui->lineEdit->text();
     password=ui->lineEdit_2->text();
     qInfo() << emailAddress << " : " << password;
     //data.append("{\"emailAddress\"").append(":").append("\""+emailAddress+"\"").append(",").append("\"password\"").append(":").append("\""+password+"\"}");
     qInfo() << "Posting to server...";
-    QNetworkRequest request = QNetworkRequest(QUrl("https://journey-sharing-application.herokuapp.com/token/panel"));
+    QNetworkRequest request = QNetworkRequest(QUrl("https://25.109.92.209:8081/token/panel"));
     QByteArray data;
     request.setHeader(QNetworkRequest::ContentTypeHeader,"application/json");
     data.append("{\"emailAddress\"").append(":").append("\""+emailAddress+"\"").append(",").append("\"password\"").append(":").append("\""+password+"\"}");

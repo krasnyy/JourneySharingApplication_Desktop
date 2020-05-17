@@ -9,11 +9,14 @@
 #include <QNetworkRequest>
 #include <QAuthenticator>
 #include <QNetworkProxy>
+#include<QSystemTrayIcon>
 
 
 namespace Ui {
 class Loginwindow;
 }
+
+class QSystemTrayIcon;
 
 class Loginwindow : public QWidget
 {
@@ -39,7 +42,7 @@ private slots:
 private:
     Ui::Loginwindow *ui;
     QNetworkAccessManager manager;
-
+    QSystemTrayIcon *mSystemTrayIcon;
     QString emailAddress;
     QString password;
 

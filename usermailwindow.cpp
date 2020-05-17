@@ -8,6 +8,13 @@ usermailwindow::usermailwindow(QWidget *parent) :
     ui(new Ui::usermailwindow)
 {
     ui->setupUi(this);
+    connect(&manager,&QNetworkAccessManager::authenticationRequired,this,&usermailwindow::authenticationRequired);
+    connect(&manager,&QNetworkAccessManager::encrypted,this,&usermailwindow::encrypted);
+    connect(&manager,&QNetworkAccessManager::networkAccessibleChanged,this,&usermailwindow::networkAccessibleChanged);
+    connect(&manager,&QNetworkAccessManager::preSharedKeyAuthenticationRequired,this,&usermailwindow::preSharedKeyAuthenticationRequired);
+    connect(&manager,&QNetworkAccessManager::proxyAuthenticationRequired,this,&usermailwindow::proxyAuthenticationRequired);
+    connect(&manager,&QNetworkAccessManager::sslErrors,this,&usermailwindow::sslErrors);
+
 
 }
 
