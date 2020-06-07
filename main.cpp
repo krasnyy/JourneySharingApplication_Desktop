@@ -7,6 +7,12 @@
 #include"mainpanel.h"
 
 
+QSqlDatabase db = QSqlDatabase::addDatabase("QPSQL");
+    db.setHostName("acidalia");
+    db.setDatabaseName("customdb");
+    db.setUserName("mojito");
+    db.setPassword("J0a1m8");
+    bool ok = db.open();
 
 
 int main(int argc, char *argv[])
@@ -18,6 +24,12 @@ int main(int argc, char *argv[])
     //logger->write("");
     Loginwindow loginWindow;
     loginWindow.show();
+    QByteArray data;
+        data.append("");
+        data.append("&");
+        data.append("param2-foo");
+
+        mail.post("http://postman-echo.com/post",data);
    /* mailSender mail;
    */
 
